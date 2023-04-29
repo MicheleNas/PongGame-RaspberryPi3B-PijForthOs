@@ -1,12 +1,12 @@
-﻿**Introduzione**
+# **Introduzione**
 
 In questo progetto viene utilizzato un Raspberry Pi 3B per realizzare il famoso gioco del Pong. L'interazione con il gioco è stata gestita attraverso l'interfaccia GPIO, mentre la visualizzazione è stata fornita attraverso l'uscita HDMI. Il progetto dimostra come il Raspberry Pi possa essere utilizzato come piattaforma per la realizzazione di giochi, combinando la flessibilità e la potenza del linguaggio di programmazione Forth con l’interazione con il mondo reale reso possibile dalle interfacce GPIO. L'implementazione del gioco del Pong su questo dispositivo dimostra come sia possibile creare esperienze di gioco coinvolgenti e interattive utilizzando il Raspberry Pi come base, e come le sue funzionalità hardware possano essere utilizzate in modo creativo e innovativo. In particolare, l'utilizzo di Forth come linguaggio di programmazione per questo progetto mette in luce le potenzialità del Raspberry Pi come piattaforma di sviluppo versatile e adatta a molteplici scopi.
 
 Il gioco termina quando uno dei due giocatori arriva al punteggio pari a 9.
 
-**Hardware**
+# **Hardware**
 
-
+![circuito](https://user-images.githubusercontent.com/108678151/235304814-4be320f8-b19c-477e-be81-18b74d92e968.jpg)
 
 [Figura 1]
 
@@ -14,15 +14,24 @@ Il sistema hardware utilizzato per questo progetto è costituito principalmente 
 
 Modulo cp2102 da USB a porta seriale TTL
 
+<img src="https://user-images.githubusercontent.com/108678151/235305014-9599e0cb-baa2-4aeb-ab91-61e0ca4be326.jpg" width="200">
+
 Raspberry Pi modello 3B
+
+![rasp](https://user-images.githubusercontent.com/108678151/235305047-02ecc723-8bae-4ea6-a954-43fe83b2a745.jpg)
+
 
 Il Raspberry Pi 3B è una scheda computer monocircuito dotata di diverse interfacce, tra cui Ethernet, Wi-Fi, USB e HDMI, che lo rendono ideale per una vasta gamma di applicazioni. Nel nostro caso, è stato utilizzato per eseguire il codice di controllo del gioco del Pong e per comunicare con il target attraverso l'interfaccia UART USB.
 
 Resistori
 
+<img src="https://user-images.githubusercontent.com/108678151/235305050-86712cb9-8b00-44e8-9a5f-cea5807c7ad7.jpg" width="200">
+
 Resistenza da 10Khom
 
 I/O choices
+
+<img src="https://user-images.githubusercontent.com/108678151/235305065-3efbe49c-a938-4a89-8313-9534a1736c3a.jpg" width="200">
 
 I pulsanti di input sono stati collegati al Raspberry Pi 3B attraverso delle resistenze di pull-up. Questo significa che quando il pulsante non viene premuto, la GPIO a cui è collegato il pulsante leggerà il valore di tensione Vcc, ovvero una logica 1. Quando il pulsante viene premuto, la GPIO leggerà il valore di tensione Gnd, ovvero una logica 0. In questo modo, il Raspberry Pi può leggere lo stato del pulsante e agire di conseguenza.
 
@@ -41,15 +50,15 @@ Assegnamenti GPIO
 |25|INPUT|Button\_up Player\_2|
 |26|INPUT|Button\_down Player\_2|
 
-**Ambiente**
+# **Ambiente**
 
 L’Ambiente utilizzato in questo progetto è PijForthOs. PijForthOS è un ambiente di sviluppo Forth progettato appositamente per il Raspberry Pi. Forth è un linguaggio di programmazione compatto e veloce che si presta bene alla programmazione embedded, ovvero alla programmazione di sistemi a basso livello, come i microcontrollori e i dispositivi embedded. Utilizzando un ambiente di sviluppo come PijForthOS, si possono sfruttare appieno le potenzialità del Raspberry Pi, programmando il sistema a basso livello e interagendo direttamente con l'hardware.
 
-**ZOC8**
+# **ZOC8**
 
 Il software ZOC8 è un emulatore di terminale seriale che permette di comunicare con l'interfaccia UART del Raspberry Pi. ZOC8 consente di stabilire una connessione seriale tra il computer e il Raspberry Pi, utilizzando un cavo USB-to-serial o un adattatore seriale. In questo modo, è possibile interagire con il Raspberry Pi come se si stesse utilizzando un terminale seriale, inviando comandi e ricevendo risposte dal sistema. L'utilizzo di ZOC8 semplifica la programmazione del Raspberry Pi, in quanto consente di interagire con il sistema in modo diretto e immediato. Ad esempio, è possibile accedere alla console del Raspberry Pi e interagire con il sistema operativo, eseguire comandi, visualizzare output e risolvere eventuali problemi di configurazione.
 
-**CODICE**
+# **CODICE**
 
 Il codice che implementa il gioco del Pong su Raspberry Pi usando il linguaggio Forth è suddiviso in diverse sezioni, ognuna delle quali si occupa di una specifica funzionalità del gioco.
 
@@ -67,7 +76,7 @@ La sesta sezione si occupa della realizzazione della barra e delle istruzioni pe
 
 Infine, la settima sezione si occupa della definizione del timer del gioco, quindi vengono gestiti i tempi per implementare la velocità delle barre e della palla.
 
-**OTTIMIZZAZIONE**
+# **OTTIMIZZAZIONE**
 
 Durante lo sviluppo del gioco, si era rilevato che il rendering delle immagini su schermo risultava piuttosto lento. È stato quindi deciso di cercare una soluzione per ottimizzare quella parte del codice, al fine di renderlo più efficiente e veloce.
 
@@ -81,7 +90,7 @@ Questa ottimizzazione ha avuto un impatto notevole sulle prestazioni del gioco, 
 
 In generale, l'utilizzo di subroutine in assembly può rappresentare una soluzione efficace per ottimizzare le prestazioni del proprio codice su piattaforme embedded come il Raspberry Pi 3B. Tuttavia, è importante prestare attenzione alla corretta implementazione delle subroutine e alla loro compatibilità con il set di istruzioni della piattaforma in uso
 
-**Setup del gioco**
+# **Setup del gioco**
 
 In primo luogo, è necessario effettuare gli appositi collegamenti dell'hardware, in questo caso il Raspberry Pi 3B, l'interfaccia UART USB e i pulsanti di input.
 
@@ -95,15 +104,15 @@ Successivamente, deve essere caricato il codice ans.f e pong.f. Questi file cont
 
 Infine, dopo aver caricato il codice, è sufficiente digitare l’istruzione "START" nel terminale per iniziare a giocare.
 
-**Configurazione Terminale Zoc8**
+# **Configurazione Terminale Zoc8**
 
 Per configurare la connessione tra il Raspberry Pi 3B e l'interfaccia UART CP2102 utilizzando il software ZOC8, è necessario seguire i seguenti passaggi:
 
 1. Collegare l'interfaccia UART al Raspberry Pi 3B attraverso uno dei suoi connettori USB.
-1. Accendere il Raspberry Pi 3B e avviare il software ZOC8 sul computer esterno.
-1. Selezionare la porta seriale corretta all'interno delle impostazioni di connessione di ZOC8. Nel nostro caso, dovremo selezionare la porta seriale associata all'interfaccia UART CP2102.
-1. Impostare la velocità di trasmissione dei dati sulla stessa velocità utilizzata dal Raspberry Pi 3B. Di solito, la velocità di default è di 115200 bps.
-1. Impostare il segnale RTS su "On" e il segnale DTR su "On" nelle impostazioni della porta seriale. Questo è necessario per garantire che il Raspberry Pi 3B riceva i comandi correttamente.
-1. Confermare le impostazioni di connessione e premere il pulsante "Connetti" per stabilire la connessione tra il Raspberry Pi 3B e il computer esterno.
+2. Accendere il Raspberry Pi 3B e avviare il software ZOC8 sul computer esterno.
+3. Selezionare la porta seriale corretta all'interno delle impostazioni di connessione di ZOC8. Nel nostro caso, dovremo selezionare la porta seriale associata all'interfaccia UART CP2102.
+4. Impostare la velocità di trasmissione dei dati sulla stessa velocità utilizzata dal Raspberry Pi 3B. Di solito, la velocità di default è di 115200 bps.
+5. Impostare il segnale RTS su "On" e il segnale DTR su "On" nelle impostazioni della porta seriale. Questo è necessario per garantire che il Raspberry Pi 3B riceva i comandi correttamente.
+6. Confermare le impostazioni di connessione e premere il pulsante "Connetti" per stabilire la connessione tra il Raspberry Pi 3B e il computer esterno.
 
 Una volta stabilita la connessione, sarà possibile utilizzare il terminale di ZOC8 per interagire con il Raspberry Pi 3B e caricare il codice Forth all'interno dell'interprete PijForthOS.
